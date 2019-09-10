@@ -60,3 +60,5 @@ router.put('/:id', (req, res) => {
         res.sendStatus(403);
     }
 });
+
+modules.exports = router;
