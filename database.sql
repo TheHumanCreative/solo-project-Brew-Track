@@ -46,11 +46,66 @@ CREATE TABLE "user"
 INSERT INTO "style"
     ("beer_type")
 VALUES
+    ('Altbier'),
     ('Amber Ale'),
+    ('American Lager'),
+    ('American Pale Ale'),
+    ('Barley Wine'),
+    ('Berliner Weisse'),
+    ('Bière de Garde'),
+    ('Bitter'),
+    ('Blonde Ale'),
+    ('Bock'),
+    ('Brown Ale'),
+    ('California Common / Steam Beer'),
+    ('Cream Ale'),
+    ('Dortmunder Export'),
+    ('Doppelbock'),
+    ('Dubbel'),
+    ('Dunkel'),
+    ('Dunkelweizen'),
+    ('Eisbock'),
+    ('English Porter'),
+    ('Flanders Red Ale'),
+    ('Golden / Summer Ale'),
+    ('Gose'),
+    ('Gueuze'),
+    ('Grodziskie'),
+    ('Hefeweizen'),
+    ('Helles'),
+    ('Helles Bock'),
+    ('India Pale Ale'),
+    ('Irish Red Ale'),
+    ('Irish Stout'),
+    ('Kellerbier'),
+    ('Kölsch'),
+    ('Lager'),
+    ('Lambic'),
+    ('Light Ale'),
+    ('Maibock'),
+    ('Mārzienbier / Oktoberfestbier'),
+    ('Mild Ale'),
+    ('Old Ale'),
+    ('Oud Bruin'),
     ('Pale Ale'),
-    ('IPA'),
-    ('Sour'),
-    ('Brown Ale');
+    ('Pale Lager'),
+    ('Pilsener/Pilsner/Pils'),
+    ('Porter'),
+    ('Quadrupel'),
+    ('Red Ale'),
+    ('Roggenbier'),
+    ('Rye Beer'),
+    ('Saison'),
+    ('Shchwarzbier'),
+    ('Scotch Ale'),
+    ('Stout'),
+    ('Vienna Lager'),
+    ('Witbier'),
+    ('Wheat beer'),
+    ('Weissbier'),
+    ('Weizenbock'),
+    ('Trappist Beer'),
+    ('Tripel');
 
 INSERT INTO "beer"
     ("beer_name", "style_id")
@@ -77,3 +132,31 @@ FROM "batch"
     JOIN "user" ON "user".id = "batch".user_id
 WHERE "batch".user_id = 1;
 ---MADE A GRAB FOR USER SPECIFIC BATCHES---WORKS -- CHANGE THE 1 to anything matching a user. WILL BE $1 when it is done.
+
+
+
+
+--SELECT * FROM "beer"
+--JOIN "style" ON "beer_name" = "style".beer_type;
+
+
+
+
+SELECT *
+FROM "batch"
+WHERE "user_id" = 1 AND "id" = 2;
+---SUCCESS SELECT FROM USER / BATCH---CHANGE TO $1 AND $2
+
+DELETE FROM "batch" WHERE "user_id" = 1 AND "id" = 2;
+---SUCCESS DELETE FROM USER / BATCH---CHANGE TO $1 AND $2
+
+
+
+
+
+
+INSERT INTO "beer"
+    ("beer_name", "style_id")
+VALUES
+    ('Tool Sober', 3);
+---SUCCESS ADD BEERNAME AND STYLE ID ASSOCIATION TO TABLE---
