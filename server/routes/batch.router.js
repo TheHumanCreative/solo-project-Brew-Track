@@ -23,13 +23,13 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     if(req.isAuthenticated()){
         console.log('req.user:', req.user);
         try{
-            let insertBatchText = `INSERT INTO "batch" ("user_id", "beer_id", "batch_name")
-                                    VALUES ($1, $2, $3);`;
-            await pool.query(insertBatchText, [req.user.id, req.body.beer_id, req.body.batch_name]);
+            let insertBatchText = `INSERT INTO "batch" ("user_id","batch_name", "temp_hlt", "temp_mash_in", "temp_mash_out", "time_boil", "notes")
+                                    VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+            await pool.query(insertBatchText, [req.body.user.id, req.body.batch_name, req.body.temp_hlt, req.body.temp_mash_in, req.body.temp_mash_out, req.body.time_boil, req.body.notes]);
             res.sendStatus(201);
         }catch (error) {
             console.log('Error in server side POST', error);

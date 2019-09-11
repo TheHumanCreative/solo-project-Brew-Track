@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class StartBrewingPage extends Component {
@@ -8,34 +8,16 @@ class StartBrewingPage extends Component {
             <button>To Brew Log</button>
             <p>HEY THIS IS THE HOME PAGE : START BREWING!</p>
             <button>To Create Batch</button>
-            <button
+            {/* <button
               className={props.className}
               onClick={() => props.dispatch({ type: "LOGOUT" })}
             >
               Log Out
-            </button>
+            </button> */}
           </div>
         );
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+};
 
 
 

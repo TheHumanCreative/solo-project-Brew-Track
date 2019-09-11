@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 //This is the Create Batch page and will have the user able to:
@@ -8,23 +8,23 @@ import { connect } from "react-redux";
 // Submit the data to the database and be alerted if they are
 // Unsuccessful ADD to Database AND Successful ADD to the Database.
 
-class CreateBatch extends Component {
+class CreateBatchPage extends Component {
   state = {
-    beer_style: "",
-    beer_name: "",
-    batch_number: "",
-    hlt_temp: "",
-    mash_in_temp: "",
-    mash_out_temp: "",
-    boil_time: "",
-    notes: ""
+    beer_style: '',
+    beer_name: '',
+    batch_name: '',
+    temp_hlt: '',
+    mash_in_temp: '',
+    mash_out_temp: '',
+    time_boil: '',
+    notes: '',
   };
 
   handlePost = event => {
     event.preventDefault();
     console.log("Submit Button has been Clicked");
     this.props.dispatch({
-      type: "POST_ITEMS",
+      type: "POST_INFO",
       payload: this.state
     });
   };
@@ -56,31 +56,31 @@ class CreateBatch extends Component {
 
   handleChangeBatchNumber = event => {
     this.setState({
-      batch_number: event.target.value
+      batch_name: event.target.value
     });
   };
 
   handleChangeHotLiquor = event => {
     this.setState({
-      hlt_temp: event.target.value
+      temp_hlt: event.target.value
     });
   };
 
   handleChangeMashIn = event => {
     this.setState({
-      mash_in_temp: event.target.value
+      temp_mash_in: event.target.value
     });
   };
 
   handleChangeMashOut = event => {
     this.setState({
-      mash_out_temp: event.target.value
+      temp_mash_out: event.target.value
     });
   };
 
   handleChangeBoilTime = event => {
     this.setState({
-      boil_time: event.target.value
+      time_boil: event.target.value
     });
   };
 
@@ -119,7 +119,7 @@ class CreateBatch extends Component {
             {batch.boil_time}
             {batch.notes}
           </td>
-          <button onClick={() => this.handleDelete(item.id, item.user_id)}>
+          <button onClick={() => this.handleDelete(batch.id, batch.user_id)}>
             Delete
           </button>
         </tr>
@@ -197,4 +197,4 @@ const mapStateToProps = reduxStore => {
     };
 };
 
-export default connect(mapStateToProps)(CreateBatch);
+export default connect(mapStateToProps)(CreateBatchPage);
