@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Button from "@material-ui/core/Button";
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
 // It doesn't dispatch any redux actions or display any part of redux state
@@ -12,7 +12,15 @@ class LogBookPage extends Component {
       type: "FETCH_BATCH_INFO"
     });
   }
-  
+
+  toCreateBatch = id => {
+    this.props.history.push(`/create`); // brings the user to logbook
+  };
+
+  toHome = () => {
+    this.props.history.push(`/`); // brings the user to home
+  };
+
   render() {
     let batchTable = this.props.reduxStore.batchReducer.map(batch => {
       return (
@@ -57,6 +65,8 @@ class LogBookPage extends Component {
             </table>
           </p>
         </div>
+        <Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
+        <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
       </div>
     );
   }

@@ -13,7 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
+import LogBookPage from '../LogBookPage/LogBookPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import StartBrewingPage from '../StartBrewingPage/StartBrewingPage';
@@ -22,7 +22,7 @@ import CreateBatchPage from '../CreateBatchPage/CreateBatchPage';
 
 
 import './App.css';
-import LogBookPage from '../LogBookPage/LogBookPage';
+
 
 class App extends Component {
   componentDidMount () {

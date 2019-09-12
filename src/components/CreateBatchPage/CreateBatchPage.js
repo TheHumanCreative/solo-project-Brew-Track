@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-
-
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 //This is the Create Batch page and will have the user able to:
 // Create a Batch
 // Name a Batch
@@ -12,14 +11,14 @@ import { connect } from "react-redux";
 
 class CreateBatchPage extends Component {
   state = {
-    beer_type: '',
-    beer_name: '',
-    batch_name: '',
-    temp_hlt: '',
-    mash_in_temp: '',
-    mash_out_temp: '',
-    time_boil: '',
-    notes: '',
+    beer_type: "",
+    beer_name: "",
+    batch_name: "",
+    temp_hlt: "",
+    mash_in_temp: "",
+    mash_out_temp: "",
+    time_boil: "",
+    notes: ""
   };
 
   handlePost = event => {
@@ -83,61 +82,69 @@ class CreateBatchPage extends Component {
     this.props.dispatch({
       type: "FETCH_BATCH_INFO"
     });
-  };
+  }
 
   handleDelete(id, user_id) {
-    console.log('this is the id to be DELETED:',id);
-    console.log('this is the user who will be DELETED', user_id);
+    console.log("this is the id to be DELETED:", id);
+    console.log("this is the user who will be DELETED", user_id);
     this.props.dispatch({
       type: "DELETE_USER_BATCH",
       payload: { id: id, user_id: user_id }
     });
   }
 
+  toLogBook = id => {
+    this.props.history.push(`/logbook`); // brings the user to logbook
+  };
+
+  toHome = () => {
+    this.props.history.push(`/`); // brings the user to home
+  };
+
   render() {
-    let batchTable = this.props.reduxStore.batchReducer.map(batch => {
-      return (
+    // let batchTable = this.props.reduxStore.batchReducer.map(batch => {
+    //   return (
 
-          <tr>
-             <td>
-            {batch.id}
-          </td>
-             <td>
-            {batch.user_id}
-          </td>
-            <td>
-            {batch.beer_id}
-          </td>
-          <td>
-            {batch.beer_type}
-          </td>
-          <td>
-            {batch.batch_name}
-          </td>
-          <td>
-            {batch.temp_hlt}°
-          </td>
-          <td>
-            {batch.temp_mash_in}°
-          </td>
-          <td>
-            {batch.temp_mash_out}°
-          </td>
-          <td>
-            {batch.time_boil}min
-          </td>
-          <td>
-            {batch.notes}
-          </td>
-          <td>
-            <button onClick={() => this.handleDelete(batch.id, batch.user_id)}>
-              Delete
-            </button>
-          </td>
-          </tr>
+    //       // <tr>
+    //       //    <td>
+    //       //   {batch.id}
+    //       // </td>
+    //       //    <td>
+    //       //   {batch.user_id}
+    //       // </td>
+    //       //   <td>
+    //       //   {batch.beer_id}
+    //       // </td>
+    //       // <td>
+    //       //   {batch.beer_type}
+    //       // </td>
+    //       // <td>
+    //       //   {batch.batch_name}
+    //       // </td>
+    //       // <td>
+    //       //   {batch.temp_hlt}°
+    //       // </td>
+    //       // <td>
+    //       //   {batch.temp_mash_in}°
+    //       // </td>
+    //       // <td>
+    //       //   {batch.temp_mash_out}°
+    //       // </td>
+    //       // <td>
+    //       //   {batch.time_boil}min
+    //       // </td>
+    //       // <td>
+    //       //   {batch.notes}
+    //       // </td>
+    //       // <td>
+    //       //   <button onClick={() => this.handleDelete(batch.id, batch.user_id)}>
+    //       //     Delete
+    //       //   </button>
+    //       // </td>
+    //       // </tr>
 
-      );
-    });
+    //   );
+    // });
     return (
       <div>
         {/* <div>{JSON.stringify(this.props.reduxStore.batchReducer)}</div> */}
@@ -187,7 +194,7 @@ class CreateBatchPage extends Component {
               <option>Doppelbock</option>
               <option>Dubbel</option>
               <option>Dunkel</option>
-              <option>Dunkelweizen</option> 
+              <option>Dunkelweizen</option>
               <option>Eisbock</option>
               <option>English Porter</option>
               <option>Flanders Red Ale</option>
@@ -231,50 +238,73 @@ class CreateBatchPage extends Component {
               <option>Tripel</option>
             </select>
           </div>
-          <p>Name your Beer: </p>
+          {/* <p>Name your Beer: </p> */}
+          <label for="sel1">Name your Beer: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeBeerName}
             type="text"
             placeholder="Name the Beer / Batch"
           />
-          <p>Give the batch a number: </p>
+          <br></br>
+          {/* <p>Give the batch a number: </p> */}
+          <label for="sel1">Give the batch a number: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeBatchNumber}
             type="text"
             placeholder="Give your batch a number"
           />
-          <p>Hot-Liquor-Tank-Temp: </p>
+          <br></br>
+          {/* <p>Hot-Liquor-Tank-Temp: </p> */}
+          <label for="sel1">Hot-Liquor-Tank Temp: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeHotLiquor}
             type="text"
             placeholder="Please log the HLT Temp"
           />
-          <p>Mash-In-Temp: </p>
+          <br></br>
+          {/* <p>Mash-In-Temp: </p> */}
+          <label for="sel1">Mash-In-Temp: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeMashIn}
             type="text"
             placeholder="Please log the Mash-In Temp"
           />
-          <p>Mash-Out-Temp: </p>
+          <br></br>
+          {/* <p>Mash-Out-Temp: </p> */}
+          <label for="sel1">Mash-Out-Temp: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeMashOut}
             type="text"
             placeholder="Please log the Mash-In Temp"
           />
-          <p>Boil Time: </p>
+          <br></br>
+          {/* <p>Boil Time: </p> */}
+          <label for="sel1">Boil Time: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeBoilTime}
             type="text"
             placeholder="Please log the Boil Time"
           />
-          <p>Please leave detailed notes: </p>
+          <br></br>
+          {/* <p>Please leave detailed notes: </p> */}
+          <label for="sel1">Please leave detailed notes: </label>
           <input
+            class="batchForm"
             onChange={this.handleChangeNotes}
             type="text"
             placeholder="Please log any notes"
           />
+          <br></br>
           <button type="submit">Submit to Brew Log</button>
         </form>
+        <Button onClick={this.toLogBook}>GO TO LOG BOOK</Button>
+        <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
       </div>
     );
   }
