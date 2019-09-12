@@ -1,4 +1,4 @@
-import { put, takeLatest, } from "redux-saga/effects";
+import { put, takeLatest, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
 
@@ -32,7 +32,7 @@ function* putBatchInfo(action) {
         // {boil_time: action.payload.boil_time},
         // {notes: action.payload.notes});
         yield put ({
-            type: 'FETCH_INFO',
+            type: 'FETCH_BATCH_INFO',
         })
     }catch(error){
         console.log('ERROR IN POST', error);
@@ -47,7 +47,7 @@ function* removeBatchInfo(action) {
         
         yield axios.delete(`/api/batch/${id}`, {user_id: action.payload});
         yield put ({
-            type: 'FETCH_INFO'
+            type: 'FETCH_BATCH_INFO'
         })
     }catch(error){
         console.log(error);
@@ -55,9 +55,9 @@ function* removeBatchInfo(action) {
 }
 
 function* batchSaga() {
-    yield takeLatest('FETCH_INFO', fetchBatchInfo);
-    yield takeLatest('POST_INFO', putBatchInfo);
-    yield takeLatest('DELETE_INFO', removeBatchInfo);
+    yield takeLatest('FETCH_BATCH_INFO', fetchBatchInfo);
+    yield takeEvery('POST_INFO', putBatchInfo);
+    yield takeLatest('DELETE_USER_BATCH', removeBatchInfo);
 }
 
 export default batchSaga;
