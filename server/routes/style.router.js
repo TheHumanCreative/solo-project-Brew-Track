@@ -1,5 +1,5 @@
-const express = require("express");
-const pool = require("../modules/pool");
+const express = require('express');
+const pool = require('../modules/pool');
 const router = express.Router();
 
 //GET all the style(s) of the Beer Batches
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     if(req.isAuthenticated()){
         console.log('req.user:', req.user);
-        let queryText = `INSERT INTO "style" ("beer_type") VALUES ($1);`;
+        let queryText = `INSERT INTO "batch" ("style_id") VALUES ($1);`;
         pool.query(queryText, [req.body.beer_type])
         .then(results => res.sendStatus(201))
         .catch(error => {

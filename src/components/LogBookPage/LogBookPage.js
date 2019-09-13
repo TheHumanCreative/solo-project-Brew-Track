@@ -21,13 +21,44 @@ class LogBookPage extends Component {
     this.props.history.push(`/`); // brings the user to home
   };
 
+  handleDelete(
+    id,
+    user_id,
+    beer_id,
+    beer_type,
+    batch_name,
+    temp_hlt,
+    temp_mash_in,
+    temp_mash_out,
+    time_boil,
+    notes
+  ) {
+    console.log("this is the id to be DELETED:", id);
+    console.log("this is the user who will be DELETED", user_id);
+    this.props.dispatch({
+      type: "DELETE_USER_BATCH",
+      payload: {
+        id: id,
+        user_id: user_id,
+        beer_id: beer_id,
+        beer_type: beer_type,
+        batch_name: batch_name,
+        temp_hlt: temp_hlt,
+        temp_mash_in: temp_mash_in,
+        temp_mash_out: temp_mash_out,
+        time_boil: time_boil,
+        notes: notes
+      }
+    });
+  }
+
   render() {
     let batchTable = this.props.reduxStore.batchReducer.map(batch => {
       return (
         <tr>
           <td>{batch.id}</td>
           <td>{batch.user_id}</td>
-          <td>{batch.beer_id}</td>
+          {/* <td>{batch.beer_id}</td> */}
           <td>{batch.beer_type}</td>
           <td>{batch.batch_name}</td>
           <td>{batch.temp_hlt}°</td>
@@ -36,7 +67,7 @@ class LogBookPage extends Component {
           <td>{batch.time_boil}min</td>
           <td>{batch.notes}</td>
           <td>
-            <button onClick={() => this.handleDelete(batch.id, batch.user_id)}>
+            <button onClick={() => this.handleDelete(batch.id, batch.user_id, batch.beer_id, batch.beer_type, batch.batch_name, batch.temp_hlt, batch.temp_mash_in, batch.temp_mash_out, batch.time_boil, batch.notes)}>
               Delete
             </button>
           </td>
@@ -51,7 +82,7 @@ class LogBookPage extends Component {
               <tr>
                 <th>beer.id</th>
                 <th>user_id</th>
-                <th>beer_id</th>
+                {/* <th>beer_id</th> */}
                 <th>beer_type</th>
                 <th>batch_name</th>
                 <th>HLT TEMP</th>
@@ -65,8 +96,14 @@ class LogBookPage extends Component {
             </table>
           </p>
         </div>
+        <br>
+        </br>
         <Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
+        <br>
+        </br>
         <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
+        <br>
+        </br>
       </div>
     );
   }

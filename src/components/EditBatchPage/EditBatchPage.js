@@ -8,14 +8,14 @@ import Button from "@material-ui/core/Button";
 // Submit the data to the database and be alerted if they are
 // Unsuccessful ADD to Database AND Successful ADD to the Database.
 
-class CreateBatchPage extends Component {
+class EditBatchPage extends Component {
   state = {
     beer_type: "",
     beer_name: "",
     batch_name: "",
     temp_hlt: "",
-    temp_mash_in: "",
-    temp_mash_out: "",
+    mash_in_temp: "",
+    mash_out_temp: "",
     time_boil: "",
     notes: ""
   };
@@ -64,13 +64,13 @@ class CreateBatchPage extends Component {
 
   handleChangeMashIn = event => {
     this.setState({
-      temp_mash_in: event.target.value
+      mash_in_temp: event.target.value
     });
   };
 
   handleChangeMashOut = event => {
     this.setState({
-      temp_mash_out: event.target.value
+      mash_out_temp: event.target.value
     });
   };
 
@@ -120,13 +120,13 @@ class CreateBatchPage extends Component {
         <form
           id="table1"
           onSubmit={this.handlePost}
-          onSubmit={this.handleStylePost}
+          
         >
           <div class="form-group">
             <label for="sel1">Beer Style:</label>
             {/* <select class="form-control" id="sel1"> */}
             <select
-              // onSubmit={this.handleStylePost}
+              onSubmit={this.handleStylePost}
               className="form-control"
               onChange={this.handleChangeBeerType}
             >
@@ -205,11 +205,14 @@ class CreateBatchPage extends Component {
           <br></br>
           <button type="submit">Submit to Brew Log</button>
         </form>
-        <br></br>
+        <br>
+        </br>
         <Button onClick={this.toLogBook}>GO TO LOG BOOK</Button>
-        <br></br>
+        <br>
+        </br>
         <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
-        <br></br>
+        <br>
+        </br>
       </div>
     );
   }
@@ -221,4 +224,4 @@ const mapStateToProps = reduxStore => {
     };
 };
 
-export default connect(mapStateToProps)(CreateBatchPage);
+export default connect(mapStateToProps)(EditBatchPage);
