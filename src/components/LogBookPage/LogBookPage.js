@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
-// This is one of our simplest components
-// It doesn't have local state, so it can be a function component.
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is, so it doesn't need 'connect()'
 
 class LogBookPage extends Component {
   componentDidMount() {
@@ -21,7 +17,16 @@ class LogBookPage extends Component {
     this.props.history.push(`/`); // brings the user to home
   };
 
-  handleDelete(
+  handleEdit = () => {
+    
+  }
+
+
+
+
+
+
+  handleDelete = (
     id,
     user_id,
     beer_id,
@@ -32,7 +37,7 @@ class LogBookPage extends Component {
     temp_mash_out,
     time_boil,
     notes
-  ) {
+  ) => {
     console.log("this is the id to be DELETED:", id);
     console.log("this is the user who will be DELETED", user_id);
     this.props.dispatch({
@@ -58,7 +63,7 @@ class LogBookPage extends Component {
         <tr>
           <td>{batch.id}</td>
           <td>{batch.user_id}</td>
-          {/* <td>{batch.beer_id}</td> */}
+          <td>{batch.beer_name}</td>
           <td>{batch.beer_type}</td>
           <td>{batch.batch_name}</td>
           <td>{batch.temp_hlt}°</td>
@@ -67,9 +72,32 @@ class LogBookPage extends Component {
           <td>{batch.time_boil}min</td>
           <td>{batch.notes}</td>
           <td>
-            <button onClick={() => this.handleDelete(batch.id, batch.user_id, batch.beer_id, batch.beer_type, batch.batch_name, batch.temp_hlt, batch.temp_mash_in, batch.temp_mash_out, batch.time_boil, batch.notes)}>
+            <Button
+              id="deleteBtn"
+              onClick={() =>
+                this.handleDelete(
+                  batch.id,
+                  batch.user_id,
+                  batch.beer_id,
+                  batch.beer_type,
+                  batch.batch_name,
+                  batch.temp_hlt,
+                  batch.temp_mash_in,
+                  batch.temp_mash_out,
+                  batch.time_boil,
+                  batch.notes
+                )
+              }
+            >
               Delete
-            </button>
+            </Button>
+          </td>
+          <td>
+            <Button 
+            id="editBtn" 
+            onClick={() => 
+            this.handleEdit(
+            )}>Edit</Button>
           </td>
         </tr>
       );
@@ -82,7 +110,7 @@ class LogBookPage extends Component {
               <tr>
                 <th>beer.id</th>
                 <th>user_id</th>
-                {/* <th>beer_id</th> */}
+                <th>beer_name</th>
                 <th>beer_type</th>
                 <th>batch_name</th>
                 <th>HLT TEMP</th>
@@ -91,19 +119,17 @@ class LogBookPage extends Component {
                 <th>BOIL TIME</th>
                 <th>NOTES</th>
                 <th>DELETE</th>
+                <th>EDIT</th>
               </tr>
               <tbody>{batchTable}</tbody>
             </table>
           </p>
         </div>
-        <br>
-        </br>
-        <Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
-        <br>
-        </br>
-        <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
-        <br>
-        </br>
+        <br></br>
+        <Button id="createBatchBtn" onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
+        <br></br>
+        <Button id="homePageBtn" onClick={this.toHome}>GO TO HOME PAGE</Button>
+        <br></br>
       </div>
     );
   }

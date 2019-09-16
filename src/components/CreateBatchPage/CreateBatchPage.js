@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+
+
+
 //This is the Create Batch page and will have the user able to:
 // Create a Batch
 // Name a Batch
@@ -10,7 +14,7 @@ import Button from "@material-ui/core/Button";
 
 class CreateBatchPage extends Component {
   state = {
-    beer_type: "",
+    style_id: "",
     beer_name: "",
     batch_name: "",
     temp_hlt: "",
@@ -40,7 +44,7 @@ class CreateBatchPage extends Component {
 
   handleChangeBeerType = event => {
     this.setState({
-      beer_type: event.target.value
+      style_id: event.target.value
     });
   };
 
@@ -117,11 +121,7 @@ class CreateBatchPage extends Component {
    
     return (
       <div>
-        <form
-          id="table1"
-          onSubmit={this.handlePost}
-          onSubmit={this.handleStylePost}
-        >
+        <form id="table1" onSubmit={this.handlePost}>
           <div class="form-group">
             <label for="sel1">Beer Style:</label>
             {/* <select class="form-control" id="sel1"> */}
@@ -133,82 +133,152 @@ class CreateBatchPage extends Component {
               <option value="">None</option>
               {this.props.reduxStore.styleReducer.map(style => {
                 return (
-                  <option key={style.id} value={style.beer_type}>
+                  <option key={style.id} value={style.id}>
                     {style.beer_type}
                   </option>
                 );
               })}
             </select>
           </div>
+
+          <TextField
+            label="Name of the Beer:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeBeerName}
+            type="text"
+            placeholder="Name the Beer / Batch"
+            fullWidth
+          />
           {/* <p>Name your Beer: </p> */}
-          <label for="sel1">Name your Beer: </label>
+          {/* <label for="sel1">Name your Beer: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeBeerName}
             type="text"
             placeholder="Name the Beer / Batch"
-          />
+          /> */}
           <br></br>
+
+          <TextField
+            label="Batch Number:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeBatchNumber}
+            type="text"
+            placeholder="Give your batch a number"
+            fullWidth
+          />
           {/* <p>Give the batch a number: </p> */}
-          <label for="sel1">Give the batch a number: </label>
+          {/* <label for="sel1">Give the batch a number: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeBatchNumber}
             type="text"
             placeholder="Give your batch a number"
-          />
+          /> */}
           <br></br>
+
+          <TextField
+            label="Hot Liquor Tank Temp:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeHotLiquor}
+            type="text"
+            placeholder="Please log the HLT Temp"
+            fullWidth
+          />
           {/* <p>Hot-Liquor-Tank-Temp: </p> */}
-          <label for="sel1">Hot-Liquor-Tank Temp: </label>
+          {/* <label for="sel1">Hot-Liquor-Tank Temp: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeHotLiquor}
             type="text"
             placeholder="Please log the HLT Temp"
-          />
+          /> */}
           <br></br>
+
+          <TextField
+            label="Mash-In Temp:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeMashIn}
+            type="text"
+            placeholder="Please log the Mash-In Temp"
+            fullWidth
+          />
           {/* <p>Mash-In-Temp: </p> */}
-          <label for="sel1">Mash-In-Temp: </label>
+          {/* <label for="sel1">Mash-In-Temp: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeMashIn}
             type="text"
             placeholder="Please log the Mash-In Temp"
-          />
+          /> */}
           <br></br>
+
+          <TextField
+            label="Mash-Out Temp:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeMashOut}
+            type="text"
+            placeholder="Please log the Mash-Out Temp"
+            fullWidth
+          />
           {/* <p>Mash-Out-Temp: </p> */}
-          <label for="sel1">Mash-Out-Temp: </label>
+          {/* <label for="sel1">Mash-Out-Temp: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeMashOut}
             type="text"
-            placeholder="Please log the Mash-In Temp"
-          />
+            placeholder="Please log the Mash-Out Temp"
+          /> */}
           <br></br>
+
+          <TextField
+            label="Boil Time:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeBoilTime}
+            type="text"
+            placeholder="Please log the Boil Time"
+            fullWidth
+          />
           {/* <p>Boil Time: </p> */}
-          <label for="sel1">Boil Time: </label>
+          {/* <label for="sel1">Boil Time: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeBoilTime}
             type="text"
             placeholder="Please log the Boil Time"
-          />
+          /> */}
           <br></br>
+
+          <TextField
+            label="Notes:"
+            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
+            // onChange={event => this.setState({ title: event.target.value })
+            onChange={this.handleChangeNotes}
+            type="text"
+            placeholder="Please log any notes"
+            fullWidth
+          />
           {/* <p>Please leave detailed notes: </p> */}
-          <label for="sel1">Please leave detailed notes: </label>
+          {/* <label for="sel1">Please leave detailed notes: </label>
           <input
             class="batchForm"
             onChange={this.handleChangeNotes}
             type="text"
             placeholder="Please log any notes"
-          />
+          /> */}
           <br></br>
-          <button type="submit">Submit to Brew Log</button>
+          <Button id="submitBtn" type="submit">Submit to Brew Log</Button>
         </form>
         <br></br>
-        <Button onClick={this.toLogBook}>GO TO LOG BOOK</Button>
+        <Button id="logBookBtn" onClick={this.toLogBook}>GO TO LOG BOOK</Button>
         <br></br>
-        <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
+        <Button id="homePageBtn" onClick={this.toHome}>GO TO HOME PAGE</Button>
         <br></br>
       </div>
     );
