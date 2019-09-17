@@ -1,9 +1,9 @@
+// this deals with the given / selected batch from the log book page.
 
 
-
-const batchReducer = (state = [], action) => {
+const editReducer = (state = {}, action) => {
   switch (action.type) {
-    case "SET_INFO":
+    case "SET_ITEM":
       return action.payload;
     case "UPDATE":
       return {
@@ -15,4 +15,4 @@ const batchReducer = (state = [], action) => {
   }
 };
 
-export default batchReducer;
+export default editReducer;

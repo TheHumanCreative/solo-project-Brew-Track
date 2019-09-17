@@ -32,9 +32,9 @@ const Nav = props => (
       <Link className="nav-link" to="/create">
         Create Batch
       </Link>
-      <Link className="nav-link" to="/edit">
+      {/* <Link className="nav-link" to="/edit">
         Edit Batch
-      </Link>
+      </Link> */}
       <Link className="nav-link" to="/logbook">
         Log Book
       </Link>

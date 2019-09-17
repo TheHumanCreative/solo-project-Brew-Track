@@ -17,8 +17,9 @@ class LogBookPage extends Component {
     this.props.history.push(`/`); // brings the user to home
   };
 
-  handleEdit = () => {
-    
+  handleEdit = (id) => {
+    console.log(id);
+    this.props.history.push(`/edit/${id}`);
   }
 
 
@@ -74,6 +75,8 @@ class LogBookPage extends Component {
           <td>
             <Button
               id="deleteBtn"
+              variant="contained"
+              color="secondary"
               onClick={() =>
                 this.handleDelete(
                   batch.id,
@@ -93,11 +96,15 @@ class LogBookPage extends Component {
             </Button>
           </td>
           <td>
-            <Button 
-            id="editBtn" 
-            onClick={() => 
-            this.handleEdit(
-            )}>Edit</Button>
+            <Button
+              id="editBtn"
+              variant="contained"
+              color="primary"
+              onClick={() => 
+                this.handleEdit(batch.id)}
+            >
+              Edit
+            </Button>
           </td>
         </tr>
       );
@@ -106,7 +113,7 @@ class LogBookPage extends Component {
       <div>
         <div>
           <p>
-            <table>
+            <table id="batchTable">
               <tr>
                 <th>beer.id</th>
                 <th>user_id</th>

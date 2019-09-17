@@ -15,6 +15,7 @@ form {
     margin: 20px auto;
     padding: 25px;
     border-radius: 2px;
+    border: chocolate;
 }
 
 input {
@@ -51,4 +52,8 @@ input {
 /* Button {
     float: right;
 } */
-
+#batchTable, tr, td {
+   border: 1px solid black;
+ 
+    
+}

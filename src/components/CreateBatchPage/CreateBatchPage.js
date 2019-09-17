@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-
-
 //This is the Create Batch page and will have the user able to:
 // Create a Batch
 // Name a Batch
@@ -31,16 +29,26 @@ class CreateBatchPage extends Component {
       type: "POST_INFO",
       payload: this.state
     });
+    this.setState ({
+    style_id: "",
+    beer_name: "",
+    batch_name: "",
+    temp_hlt: "",
+    temp_mash_in: "",
+    temp_mash_out: "",
+    time_boil: "",
+    notes: ""
+    })
   };
 
-  handleStylePost = event =>{
-    event.preventDefault();
-    console.log("Styles has been added to Beer Batch.");
-    this.props.dispatch({
-      type: "POST_STYLES",
-      payload: this.state
-    });
-  };
+  // handleStylePost = event =>{
+  //   event.preventDefault();
+  //   console.log("Styles has been added to Beer Batch.");
+  //   this.props.dispatch({
+  //     type: "POST_STYLES",
+  //     payload: this.state
+  //   });
+  // };
 
   handleChangeBeerType = event => {
     this.setState({
