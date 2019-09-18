@@ -19,18 +19,10 @@ function* fetchBatchInfo() {
     }
 }
 
-function* putBatchInfo(action) {
+function* putBatchItem(action) {
     try{
         // POST THE ITEMS FROM OUR SERVER
-        yield axios.post(`/api/batch`, action.payload)
-        // {beer_style: action.payload.beer_style},
-        // {beer_name: action.payload.beer_name},
-        // {batch_number: action.payload.batch_number},
-        // {hlt_temp: action.payload.hlt_temp},
-        // {mash_in_temp: action.payload.mash_in_temp},
-        // {mash_out_temp: action.payload.mash_out_temp},
-        // {boil_time: action.payload.boil_time},
-        // {notes: action.payload.notes});
+        yield axios.post(`/api/batch`, action.payload);
         yield put ({
             type: 'FETCH_BATCH_INFO',
         })
@@ -54,10 +46,25 @@ function* removeBatchInfo(action) {
     }
 }
 
+// function* updateBatchInfo(action) {
+//     console.log('updating Batch:', action.payload);
+//     // console.log(action.payload.id, action.payload.user_id, action.payload.style_id, action.payload.beer_name, action.payload.batch_name, action.payload.temp_hlt, action.payload.temp_mash_in, action.payload.temp_mash_out, action.payload.time_boil, action.payload.notes);
+//     try{
+//         yield axios.put(`/edit`, action.payload);
+//         yield put ({
+//             type: 'SET_INFO',
+//             payload: action.payload.id
+//         })
+//     }catch (error) {
+//         console.log('Error in PUT', error)
+//     }
+// }
+
 function* batchSaga() {
     yield takeLatest('FETCH_BATCH_INFO', fetchBatchInfo);
-    yield takeEvery('POST_INFO', putBatchInfo);
+    yield takeEvery('POST_INFO', putBatchItem);
     yield takeLatest('DELETE_USER_BATCH', removeBatchInfo);
+    // yield takeEvery('UPDATE', updateBatchInfo);
 }
 
 export default batchSaga;

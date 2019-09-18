@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route 
  */
 router.get('/', (req, res) => {
     if(req.isAuthenticated()){
@@ -13,16 +13,15 @@ router.get('/', (req, res) => {
         pool.query(queryText)
         .then(results => res.send(results.rows))
         .catch(error => {
-            console.log('Error in GET route server side', error);
+            console.log('Error in GET route Server side', error);
             res.sendStatus(404);
         })
     }else{
         res.sendStatus(403);
     }
 });
-
 /**
- * POST route template
+ * POST route 
  */
 router.post('/', (req, res) => {
     if(req.isAuthenticated()){
@@ -52,8 +51,9 @@ router.post('/', (req, res) => {
         res.sendStatus(403);
     }
 });
-
-
+/**
+ * DELETE route 
+ */
 router.delete('/:id', (req, res) => {
     console.log(req.body, req.user);
 
@@ -70,32 +70,5 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(403)
     }
 });
-
-router.put('/update', (req, res) => {
-    console.log();
-    const queryText = `UPDATE "batch" SET "style_id" = $1, "beer_name" = $2,
-                        "batch_name" = $3, "temp_hlt" = $4, "temp_mash_in" = $5,
-                        "temp_mash_out" = $6, "time_boil" = $7, "notes" = $8 WHERE "id" = $9;`;
-            pool.query(queryText, [
-              req.body.style_id,
-              req.body.beer_name,
-              req.body.batch_name,
-              req.body.temp_hlt,
-              req.body.temp_mash_in,
-              req.body.temp_mash_out,
-              req.body.time_boil,
-              req.body.notes
-            ])
-                .then ((results) => {
-                   res.sendStatus(201);
-                   console.log(results);
-                   console.log("Successful UPDATE TO DATABASE!"); 
-                })
-                .catch (error => {
-                    console.log('error in Update route', error);
-                    res.sendStatus(500);
-                })
-            
-})
 
 module.exports = router;

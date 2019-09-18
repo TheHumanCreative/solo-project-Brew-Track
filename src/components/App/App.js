@@ -54,7 +54,7 @@ class App extends Component {
             This route is for the start page of the application */}
             <ProtectedRoute exact path="/create" component={CreateBatchPage} />
             {/* This route is for the create page of the application*/}
-            <Route exact path="/edit" component={EditBatchPage} />
+            <Route exact path="/edit/:id" component={EditBatchPage} />
             {/* This route is for the edit page of the application*/}
             <Route exact path="/logbook" component={LogBookPage} />
             {/* This route is for the view all logs page of the application*/}
