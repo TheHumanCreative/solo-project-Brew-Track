@@ -1,6 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+
+const styles = {
+  table: {
+    border: "10px solid black",
+    width: "100%",
+    backgroundColor: "tan",
+    // minHeight: "20vh",
+    // display: "flex", // is fine as there is not a dash.
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "calc(5px + 2vmin)",
+    color: "black",
+    // "&:hover": {
+    //   // change to both KEY and the
+    //   textDecoration: "underline",
+    //   color: "white"
+    // }
+  },
+  tr: {
+    border: "3px solid black"
+  },
+  td: {
+    border: "3px solid black",
+    justifyContent: "center",
+    alignItems: "center"
+  }
+};
 
 class LogBookPage extends Component {
   componentDidMount() {
@@ -17,15 +47,10 @@ class LogBookPage extends Component {
     this.props.history.push(`/`); // brings the user to home
   };
 
-  handleEdit = (id) => {
+  handleEdit = id => {
     console.log(id);
     this.props.history.push(`/edit/${id}`);
-  }
-
-
-
-
-
+  };
 
   handleDelete = (
     id,
@@ -56,25 +81,25 @@ class LogBookPage extends Component {
         notes: notes
       }
     });
-  }
+  };
 
   render() {
+    console.log(this.props.classes);
     let batchTable = this.props.reduxStore.batchReducer.map(batch => {
       return (
         <tr>
-          <td>{batch.id}</td>
-          <td>{batch.user_id}</td>
-          <td>{batch.beer_name}</td>
-          <td>{batch.beer_type}</td>
-          <td>{batch.batch_name}</td>
-          <td>{batch.temp_hlt}°</td>
-          <td>{batch.temp_mash_in}°</td>
-          <td>{batch.temp_mash_out}°</td>
-          <td>{batch.time_boil}min</td>
-          <td>{batch.notes}</td>
+          <td className={this.props.classes.td}>{batch.id}</td>
+          <td className={this.props.classes.td}>{batch.user_id}</td>
+          <td className={this.props.classes.td}>{batch.beer_name}</td>
+          <td className={this.props.classes.td}>{batch.beer_type}</td>
+          <td className={this.props.classes.td}>{batch.batch_name}</td>
+          <td className={this.props.classes.td}>{batch.temp_hlt}°</td>
+          <td className={this.props.classes.td}>{batch.temp_mash_in}°</td>
+          <td className={this.props.classes.td}>{batch.temp_mash_out}°</td>
+          <td className={this.props.classes.td}>{batch.time_boil}min</td>
+          <td className={this.props.classes.td}>{batch.notes}</td>
           <td>
             <Button
-              id="deleteBtn"
               variant="contained"
               color="secondary"
               onClick={() =>
@@ -97,11 +122,9 @@ class LogBookPage extends Component {
           </td>
           <td>
             <Button
-              id="editBtn"
               variant="contained"
               color="primary"
-              onClick={() => 
-                this.handleEdit(batch.id)}
+              onClick={() => this.handleEdit(batch.id)}
             >
               Edit
             </Button>
@@ -109,33 +132,35 @@ class LogBookPage extends Component {
         </tr>
       );
     });
+
     return (
       <div>
         <div>
           <p>
-            <table id="batchTable">
-              <tr>
-                <th>beer.id</th>
-                <th>user_id</th>
-                <th>beer_name</th>
-                <th>beer_type</th>
-                <th>batch_name</th>
-                <th>HLT TEMP</th>
-                <th>MASH-IN TEMP</th>
-                <th>MASH-OUT TEMP</th>
-                <th>BOIL TIME</th>
-                <th>NOTES</th>
-                <th>DELETE</th>
-                <th>EDIT</th>
+            <table className={this.props.classes.table}>
+              <tr className={this.props.classes.tr}>
+                <th>Beer id</th>
+                <th>User id</th>
+                <th>Beer Name</th>
+                <th>Beer Style</th>
+                <th>Batch Number</th>
+                <th>HLT Temp</th>
+                <th>Mash In Temp</th>
+                <th>Mash Out TEMP</th>
+                <th>Boil Time</th>
+                <th>Notes</th>
+                <th>Delete</th>
+                <th>Edit</th>
               </tr>
               <tbody>{batchTable}</tbody>
             </table>
           </p>
         </div>
         <br></br>
-        <Button id="createBatchBtn" onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
-        <br></br>
-        <Button id="homePageBtn" onClick={this.toHome}>GO TO HOME PAGE</Button>
+        <Grid container spacing={8} alignItems={"center"}>
+        <Grid item xs={6}><Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button></Grid>
+        <Grid item xs={6}><Button onClick={this.toHome}>GO TO HOME PAGE</Button></Grid> 
+        </Grid>
         <br></br>
       </div>
     );
@@ -148,4 +173,4 @@ const mapStateToProps = reduxStore => {
   };
 };
 
-export default connect(mapStateToProps)(LogBookPage);
+export default connect(mapStateToProps)(withStyles(styles)(LogBookPage));

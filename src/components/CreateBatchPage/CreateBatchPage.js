@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+
 
 //This is the Create Batch page and will have the user able to:
 // Create a Batch
@@ -9,6 +12,31 @@ import TextField from "@material-ui/core/TextField";
 // Input temps and time
 // Submit the data to the database and be alerted if they are
 // Unsuccessful ADD to Database AND Successful ADD to the Database.
+
+const styles = {
+  header: {
+    backgroundColor: "#282c34",
+    minHeight: "20vh",
+    display: "flex", // is fine as there is not a dash.
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "calc(10px + 2vmin)",
+    color: "white",
+    "&:hover": {
+      // change to both KEY and the
+      textDecoration: "underline",
+      color: "red"
+    }
+  },
+  Button: {
+    background: "brown",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    display: "center",
+  }
+};
 
 class CreateBatchPage extends Component {
   state = {
@@ -22,6 +50,16 @@ class CreateBatchPage extends Component {
     notes: ""
   };
 
+  componentDidMount() {
+    this.props.dispatch({
+      type: "FETCH_BATCH_INFO"
+    });
+
+    this.props.dispatch({
+      type: "FETCH_STYLES_INFO"
+    });
+  }
+
   handlePost = event => {
     event.preventDefault();
     console.log("Submit Button has been Clicked");
@@ -29,16 +67,6 @@ class CreateBatchPage extends Component {
       type: "POST_INFO",
       payload: this.state
     });
-    this.setState ({
-    style_id: "",
-    beer_name: "",
-    batch_name: "",
-    temp_hlt: "",
-    temp_mash_in: "",
-    temp_mash_out: "",
-    time_boil: "",
-    notes: ""
-    })
   };
 
   // handleStylePost = event =>{
@@ -98,25 +126,6 @@ class CreateBatchPage extends Component {
     });
   };
 
-  componentDidMount() {
-    this.props.dispatch({
-      type: "FETCH_BATCH_INFO"
-    });
-
-    this.props.dispatch({
-      type: "FETCH_STYLES_INFO"
-    });
-  }
-
-  // handleDelete(user_id, id) {
-  //   console.log("this is the id to be DELETED:", id);
-  //   console.log("this is the user who will be DELETED", user_id);
-  //   this.props.dispatch({
-  //     type: "DELETE_USER_BATCH",
-  //     payload: { id: id, user_id: user_id }
-  //   });
-  // }
-
   toLogBook = id => {
     this.props.history.push(`/logbook`); // brings the user to logbook
   };
@@ -126,7 +135,6 @@ class CreateBatchPage extends Component {
   };
 
   render() {
-   
     return (
       <div>
         <form id="table1" onSubmit={this.handlePost}>
@@ -148,145 +156,80 @@ class CreateBatchPage extends Component {
               })}
             </select>
           </div>
-
           <TextField
             label="Name of the Beer:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeBeerName}
             type="text"
             placeholder="Name the Beer / Batch"
             fullWidth
           />
-          {/* <p>Name your Beer: </p> */}
-          {/* <label for="sel1">Name your Beer: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeBeerName}
-            type="text"
-            placeholder="Name the Beer / Batch"
-          /> */}
           <br></br>
-
           <TextField
             label="Batch Number:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeBatchNumber}
             type="text"
             placeholder="Give your batch a number"
             fullWidth
           />
-          {/* <p>Give the batch a number: </p> */}
-          {/* <label for="sel1">Give the batch a number: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeBatchNumber}
-            type="text"
-            placeholder="Give your batch a number"
-          /> */}
           <br></br>
-
           <TextField
             label="Hot Liquor Tank Temp:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeHotLiquor}
             type="text"
             placeholder="Please log the HLT Temp"
             fullWidth
           />
-          {/* <p>Hot-Liquor-Tank-Temp: </p> */}
-          {/* <label for="sel1">Hot-Liquor-Tank Temp: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeHotLiquor}
-            type="text"
-            placeholder="Please log the HLT Temp"
-          /> */}
           <br></br>
-
           <TextField
             label="Mash-In Temp:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeMashIn}
             type="text"
             placeholder="Please log the Mash-In Temp"
             fullWidth
           />
-          {/* <p>Mash-In-Temp: </p> */}
-          {/* <label for="sel1">Mash-In-Temp: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeMashIn}
-            type="text"
-            placeholder="Please log the Mash-In Temp"
-          /> */}
           <br></br>
-
           <TextField
             label="Mash-Out Temp:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeMashOut}
             type="text"
             placeholder="Please log the Mash-Out Temp"
             fullWidth
           />
-          {/* <p>Mash-Out-Temp: </p> */}
-          {/* <label for="sel1">Mash-Out-Temp: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeMashOut}
-            type="text"
-            placeholder="Please log the Mash-Out Temp"
-          /> */}
           <br></br>
-
           <TextField
             label="Boil Time:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeBoilTime}
             type="text"
             placeholder="Please log the Boil Time"
             fullWidth
           />
-          {/* <p>Boil Time: </p> */}
-          {/* <label for="sel1">Boil Time: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeBoilTime}
-            type="text"
-            placeholder="Please log the Boil Time"
-          /> */}
           <br></br>
-
           <TextField
             label="Notes:"
-            // defaultValue={this.props.reduxStore.batchReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
             onChange={this.handleChangeNotes}
             type="text"
             placeholder="Please log any notes"
             fullWidth
           />
-          {/* <p>Please leave detailed notes: </p> */}
-          {/* <label for="sel1">Please leave detailed notes: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeNotes}
-            type="text"
-            placeholder="Please log any notes"
-          /> */}
           <br></br>
-          <Button id="submitBtn" type="submit">Submit to Brew Log</Button>
+          <br></br>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.toLogBook}
+            type="submit"
+          >
+            Submit to Brew Log
+          </Button>
         </form>
         <br></br>
-        <Button id="logBookBtn" onClick={this.toLogBook}>GO TO LOG BOOK</Button>
+        <Button className={this.props.classes.Button} onClick={this.toLogBook}>
+          GO TO LOG BOOK
+        </Button>
         <br></br>
-        <Button id="homePageBtn" onClick={this.toHome}>GO TO HOME PAGE</Button>
+        <Button className={this.props.classes.Button} onClick={this.toHome}>
+          GO TO HOME PAGE
+        </Button>
         <br></br>
       </div>
     );
@@ -299,4 +242,4 @@ const mapStateToProps = reduxStore => {
     };
 };
 
-export default connect(mapStateToProps)(CreateBatchPage);
+export default connect(mapStateToProps)(withStyles(styles)(CreateBatchPage));

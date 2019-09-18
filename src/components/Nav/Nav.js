@@ -22,7 +22,7 @@ const Nav = props => (
           {/* <Link className="nav-link" to="/start">
             Start Brewing
           </Link> */}
-          {/* <LogOutButton className="nav-link" /> */}
+          <LogOutButton className="nav-link"/>
         </>
       )}
       {/* Always show this link since the about page is not protected */}
@@ -32,13 +32,12 @@ const Nav = props => (
       <Link className="nav-link" to="/create">
         Create Batch
       </Link>
-      {/* <Link className="nav-link" to="/edit">
-        Edit Batch
-      </Link> */}
       <Link className="nav-link" to="/logbook">
         Log Book
       </Link>
-      <LogOutButton className="nav-link" />
+      {/* <Link>
+        <LogOutButton className="nav-link" to="/log-in" />
+      </Link> */}
     </div>
   </div>
 );

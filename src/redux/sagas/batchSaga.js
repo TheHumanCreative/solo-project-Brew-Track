@@ -46,19 +46,19 @@ function* removeBatchInfo(action) {
     }
 }
 
-function* updateBatchInfo(action) {
-    console.log('updating Batch:', action.payload);
-    // console.log(action.payload.id, action.payload.user_id, action.payload.style_id, action.payload.beer_name, action.payload.batch_name, action.payload.temp_hlt, action.payload.temp_mash_in, action.payload.temp_mash_out, action.payload.time_boil, action.payload.notes);
-    try{
-        yield axios.put(`/edit`, action.payload);
-        yield put ({
-            type: 'SET_INFO',
-            payload: action.payload.id
-        })
-    }catch (error) {
-        console.log('Error in PUT', error)
-    }
-}
+// function* updateBatchInfo(action) {
+//     console.log('updating Batch:', action.payload);
+//     // console.log(action.payload.id, action.payload.user_id, action.payload.style_id, action.payload.beer_name, action.payload.batch_name, action.payload.temp_hlt, action.payload.temp_mash_in, action.payload.temp_mash_out, action.payload.time_boil, action.payload.notes);
+//     try{
+//         yield axios.put(`/edit`, action.payload);
+//         yield put ({
+//             type: 'SET_INFO',
+//             payload: action.payload.id
+//         })
+//     }catch (error) {
+//         console.log('Error in PUT', error)
+//     }
+// }
 
 function* batchSaga() {
     yield takeLatest('FETCH_BATCH_INFO', fetchBatchInfo);

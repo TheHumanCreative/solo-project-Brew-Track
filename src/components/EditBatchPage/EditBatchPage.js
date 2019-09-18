@@ -17,10 +17,10 @@ class EditBatchPage extends Component {
       this.fetchbatch();
 
 
-    // this.props.dispatch({
-    //   type: "FETCH_STYLES_INFO"
+    this.props.dispatch({
+      type: "FETCH_STYLES_INFO"
       
-    // });
+    });
   }
 
 
@@ -55,52 +55,7 @@ class EditBatchPage extends Component {
   //     beer_type: event.target.value
   //   });
   // };
-
-  // handleChangeBeerName = event => {
-  //   this.setState({
-  //     beer_name: event.target.value
-  //   });
-  // };
-
-  // handleChangeBatchNumber = event => {
-  //   this.setState({
-  //     batch_name: event.target.value
-  //   });
-  // };
-
-  // handleChangeHotLiquor = event => {
-  //   this.setState({
-  //     temp_hlt: event.target.value
-  //   });
-  // };
-
-  // handleChangeMashIn = event => {
-  //   this.setState({
-  //     mash_in_temp: event.target.value
-  //   });
-  // };
-
-  // handleChangeMashOut = event => {
-  //   this.setState({
-  //     mash_out_temp: event.target.value
-  //   });
-  // };
-
-  // handleChangeBoilTime = event => {
-  //   this.setState({
-  //     time_boil: event.target.value
-  //   });
-  // };
-
-  // handleChangeNotes = event => {
-  //   this.setState({
-  //     notes: event.target.value
-  //   });
-  // };
-
   
-  
-
   updateBatch = event => {
     // event.preventDefault();
 
@@ -132,12 +87,13 @@ class EditBatchPage extends Component {
   };
 
   render() {
+    console.log(this.props.reduxStore);
+    
     return (
       <div>
         <form id="table1" onSubmit={this.updateBatch}>
           <div class="form-group">
-            <label for="sel1">Beer Style:</label>
-            {/* <select class="form-control" id="sel1"> */}
+            <label for="sel1">Beer Style: </label>
             <select
               onSubmit={this.handleStylePost}
               className="form-control"
@@ -155,8 +111,7 @@ class EditBatchPage extends Component {
           </div>
           <TextField
             label="Edit Beer Name:"
-            defaultValue={this.props.reduxStore.editReducer.beer_name}
-            // onChange={event => this.setState({ title: event.target.value })
+            value={this.props.reduxStore.editReducer.beer_name}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -167,12 +122,13 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.beer_name
+            }}
           />
-          {/* <p>Name your Beer: </p> */}
-      
           <TextField
             label="Edit Batch Number:"
-            defaultValue={this.props.reduxStore.editReducer.batch_name}
+            value={this.props.reduxStore.editReducer.batch_name}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -183,13 +139,14 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.batch_name
+            }}
           />
-
-          
           <br></br>
           <TextField
             label="Edit Hot Liquor Tank Temp:"
-            defaultValue={this.props.reduxStore.editReducer.temp_hlt}
+            value={this.props.reduxStore.editReducer.temp_hlt}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -200,21 +157,14 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.temp_hlt
+            }}
           />
-
-          {/* <p>Hot-Liquor-Tank-Temp: </p> */}
-          {/* <label for="sel1">Hot-Liquor-Tank Temp: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeHotLiquor}
-            type="text"
-            placeholder="Please log the HLT Temp"
-          /> */}
           <br></br>
-
           <TextField
             label="Edit Mash-In Temp:"
-            defaultValue={this.props.reduxStore.editReducer.temp_mash_in}
+            value={this.props.reduxStore.editReducer.temp_mash_in}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -225,20 +175,14 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.temp_mash_in
+            }}
           />
-          {/* <p>Mash-In-Temp: </p> */}
-          {/* <label for="sel1">Mash-In-Temp: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeMashIn}
-            type="text"
-            placeholder="Please log the Mash-In Temp"
-          /> */}
           <br></br>
-
           <TextField
             label="Edit Mash-Out Temp:"
-            defaultValue={this.props.reduxStore.editReducer.temp_mash_out}
+            value={this.props.reduxStore.editReducer.temp_mash_out}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -249,20 +193,14 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.temp_mash_out
+            }}
           />
-          {/* <p>Mash-Out-Temp: </p> */}
-          {/* <label for="sel1">Mash-Out-Temp: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeMashOut}
-            type="text"
-            placeholder="Please log the Mash-In Temp"
-          /> */}
           <br></br>
-
           <TextField
             label="Edit Time of Boil:"
-            defaultValue={this.props.reduxStore.editReducer.time_boil}
+            value={this.props.reduxStore.editReducer.time_boil}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -273,20 +211,14 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.time_boil
+            }}
           />
-          {/* <p>Boil Time: </p> */}
-          {/* <label for="sel1">Boil Time: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeBoilTime}
-            type="text"
-            placeholder="Please log the Boil Time"
-          /> */}
           <br></br>
-
           <TextField
             label="Edit Notes:"
-            defaultValue={this.props.reduxStore.editReducer.notes}
+            value={this.props.reduxStore.editReducer.notes}
             onChange={event =>
               this.props.dispatch({
                 type: "UPDATE",
@@ -297,28 +229,25 @@ class EditBatchPage extends Component {
               })
             }
             fullWidth
+            InputLabelProps={{
+              shrink: this.props.reduxStore.editReducer.notes
+            }}
           />
-          {/* <p>Please leave detailed notes: </p> */}
-          {/* <label for="sel1">Please leave detailed notes: </label>
-          <input
-            class="batchForm"
-            onChange={this.handleChangeNotes}
-            type="text"
-            placeholder="Please log any notes"
-          /> */}
           <br></br>
-          <Button id="submitBtn" type="submit">
+          <br></br>
+          <Button
+            variant="contained"
+            color="secondary"
+            type="submit"
+            onClick={this.toLogBook}
+          >
             Submit to Brew Log
           </Button>
         </form>
         <br></br>
-        <Button id="logBookBtn" onClick={this.toLogBook}>
-          GO TO LOG BOOK
-        </Button>
+        <Button onClick={this.toLogBook}>GO TO LOG BOOK</Button>
         <br></br>
-        <Button id="homePageBtn" onClick={this.toHome}>
-          GO TO HOME PAGE
-        </Button>
+        <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
         <br></br>
       </div>
     );
