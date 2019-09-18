@@ -6,7 +6,7 @@ const router = express.Router();
  * GET route
  */
 // target one specific id from the database as a batch and get that Data.
-router.get("/:id", (req, res) => {
+router.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     console.log("req.user:", req.user);
     let id = req.params.id;
@@ -17,7 +17,7 @@ router.get("/:id", (req, res) => {
         res.send(results.rows[0])
         })
       .catch(error => {
-        console.log("Error in GET route server side", error);
+        console.log("Error in GET route SErver side", error);
         res.sendStatus(404);
       });
   } else {

@@ -18,7 +18,7 @@ function* fetchBatchItem(action) {
     }catch (error) {
         console.log(error);
     }
-}
+};
 
 // function* putBatchItem(action) {
 //   try {

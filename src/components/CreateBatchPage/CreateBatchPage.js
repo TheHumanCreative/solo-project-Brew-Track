@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
+// import { Grid } from "@material-ui/core";
 
 
 //This is the Create Batch page and will have the user able to:
@@ -58,7 +58,7 @@ class CreateBatchPage extends Component {
     this.props.dispatch({
       type: "FETCH_STYLES_INFO"
     });
-  }
+  };
 
   handlePost = event => {
     event.preventDefault();

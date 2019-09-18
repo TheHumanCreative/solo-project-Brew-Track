@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         pool.query(queryText)
         .then(results => res.send(results.rows))
         .catch(error => {
-            console.log('Error in GET route server side', error);
+            console.log('Error in GET route Server side', error);
             res.sendStatus(404);
         })
     }else{

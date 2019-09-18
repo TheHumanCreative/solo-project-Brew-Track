@@ -87,7 +87,6 @@ class EditBatchPage extends Component {
   };
 
   render() {
-    console.log(this.props.reduxStore);
     
     return (
       <div>

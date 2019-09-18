@@ -37,7 +37,7 @@ class LogBookPage extends Component {
     this.props.dispatch({
       type: "FETCH_BATCH_INFO"
     });
-  }
+  };
 
   toCreateBatch = id => {
     this.props.history.push(`/create`); // brings the user to logbook
@@ -78,26 +78,27 @@ class LogBookPage extends Component {
         temp_mash_in: temp_mash_in,
         temp_mash_out: temp_mash_out,
         time_boil: time_boil,
-        notes: notes
+        notes: notes,
       }
     });
   };
 
   render() {
-    console.log(this.props.classes);
+    console.log(this.props.reduxStore.batchReducer);
+    
     let batchTable = this.props.reduxStore.batchReducer.map(batch => {
       return (
         <tr>
-          <td className={this.props.classes.td}>{batch.id}</td>
-          <td className={this.props.classes.td}>{batch.user_id}</td>
-          <td className={this.props.classes.td}>{batch.beer_name}</td>
-          <td className={this.props.classes.td}>{batch.beer_type}</td>
-          <td className={this.props.classes.td}>{batch.batch_name}</td>
-          <td className={this.props.classes.td}>{batch.temp_hlt}°</td>
-          <td className={this.props.classes.td}>{batch.temp_mash_in}°</td>
-          <td className={this.props.classes.td}>{batch.temp_mash_out}°</td>
-          <td className={this.props.classes.td}>{batch.time_boil}min</td>
-          <td className={this.props.classes.td}>{batch.notes}</td>
+          <td >{batch.id}</td>
+          <td >{batch.user_id}</td>
+          <td >{batch.beer_name}</td>
+          <td >{batch.beer_type}</td>
+          <td >{batch.batch_name}</td>
+          <td >{batch.temp_hlt}°</td>
+          <td >{batch.temp_mash_in}°</td>
+          <td >{batch.temp_mash_out}°</td>
+          <td >{batch.time_boil}min</td>
+          <td >{batch.notes}</td>
           <td>
             <Button
               variant="contained"
@@ -158,8 +159,12 @@ class LogBookPage extends Component {
         </div>
         <br></br>
         <Grid container spacing={8} alignItems={"center"}>
-        <Grid item xs={6}><Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button></Grid>
-        <Grid item xs={6}><Button onClick={this.toHome}>GO TO HOME PAGE</Button></Grid> 
+          <Grid item xs={6}>
+            <Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
+          </Grid>
         </Grid>
         <br></br>
       </div>
