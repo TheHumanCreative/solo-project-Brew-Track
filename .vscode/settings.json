@@ -1,6 +1,7 @@
 {
     "cSpell.ignoreWords": [
         "fetchbatch",
+        "homebrewery",
         "idle",
         "jq",
         "kjoj",
@@ -9,6 +10,7 @@
         "pgdatabase",
         "pgport",
         "rknup",
+        "startbrewing",
         "timeout",
         "xl"
     ],

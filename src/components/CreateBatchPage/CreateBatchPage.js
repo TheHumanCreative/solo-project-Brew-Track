@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-// import { Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 
 //This is the Create Batch page and will have the user able to:
@@ -14,27 +14,23 @@ import { withStyles } from "@material-ui/core/styles";
 // Unsuccessful ADD to Database AND Successful ADD to the Database.
 
 const styles = {
-  header: {
-    backgroundColor: "#282c34",
-    minHeight: "20vh",
-    display: "flex", // is fine as there is not a dash.
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: "calc(10px + 2vmin)",
-    color: "white",
-    "&:hover": {
-      // change to both KEY and the
-      textDecoration: "underline",
-      color: "red"
-    }
-  },
+ 
   Button: {
     background: "brown",
+    color: "white",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "column",
-    display: "center",
+    display: "center"
+  },
+  main: {
+    backgroundImage: "url('./images/hops.jpg')",
+    backgroundSize: "100%",
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+    height: "1000px",
+    
   }
 };
 
@@ -62,21 +58,17 @@ class CreateBatchPage extends Component {
 
   handlePost = event => {
     event.preventDefault();
+    console.log(this.state);
+    
     console.log("Submit Button has been Clicked");
     this.props.dispatch({
       type: "POST_INFO",
-      payload: this.state
+      payload: this.state,
+      history: this.props.history
     });
-  };
 
-  // handleStylePost = event =>{
-  //   event.preventDefault();
-  //   console.log("Styles has been added to Beer Batch.");
-  //   this.props.dispatch({
-  //     type: "POST_STYLES",
-  //     payload: this.state
-  //   });
-  // };
+    // this.toLogBook();
+  };
 
   handleChangeBeerType = event => {
     this.setState({
@@ -137,100 +129,111 @@ class CreateBatchPage extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handlePost}>
-          <div class="form-group">
-            <label for="sel1">Beer Style:</label>
-            {/* <select class="form-control" id="sel1"> */}
-            <select
-              // onSubmit={this.handleStylePost}
-              className="form-control"
-              onChange={this.handleChangeBeerType}
+        <main className={this.props.classes.main}>
+          <form onSubmit={this.handlePost}>
+            <div class="form-group">
+              <label for="sel1">Beer Style:</label>
+              {/* <select class="form-control" id="sel1"> */}
+              <select
+                className="form-control"
+                onChange={this.handleChangeBeerType}
+              >
+                <option value="">None</option>
+                {this.props.reduxStore.styleReducer.map(style => {
+                  return (
+                    <option key={style.id} value={style.id}>
+                      {style.beer_type}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <TextField
+              label="Name of the Beer:"
+              onChange={this.handleChangeBeerName}
+              type="text"
+              placeholder="Name the Beer / Batch"
+              fullWidth
+            />
+            <br></br>
+            <TextField
+              label="Batch Number:"
+              onChange={this.handleChangeBatchNumber}
+              type="text"
+              placeholder="Give your batch a number"
+              fullWidth
+            />
+            <br></br>
+            <TextField
+              label="Hot Liquor Tank Temp:"
+              onChange={this.handleChangeHotLiquor}
+              type="text"
+              placeholder="Please log the HLT Temp"
+              fullWidth
+            />
+            <br></br>
+            <TextField
+              label="Mash-In Temp:"
+              onChange={this.handleChangeMashIn}
+              type="text"
+              placeholder="Please log the Mash-In Temp"
+              fullWidth
+            />
+            <br></br>
+            <TextField
+              label="Mash-Out Temp:"
+              onChange={this.handleChangeMashOut}
+              type="text"
+              placeholder="Please log the Mash-Out Temp"
+              fullWidth
+            />
+            <br></br>
+            <TextField
+              label="Boil Time:"
+              onChange={this.handleChangeBoilTime}
+              type="text"
+              placeholder="Please log the Boil Time"
+              fullWidth
+            />
+            <br></br>
+            <TextField
+              label="Notes:"
+              onChange={this.handleChangeNotes}
+              type="text"
+              placeholder="Please log any notes"
+              fullWidth
+            />
+            <br></br>
+            <br></br>
+            <Button
+              variant="contained"
+              color="secondary"
+              // onClick={this.toLogBook}
+              type="submit"
             >
-              <option value="">None</option>
-              {this.props.reduxStore.styleReducer.map(style => {
-                return (
-                  <option key={style.id} value={style.id}>
-                    {style.beer_type}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <TextField
-            label="Name of the Beer:"
-            onChange={this.handleChangeBeerName}
-            type="text"
-            placeholder="Name the Beer / Batch"
-            fullWidth
-          />
+              Submit to Brew Log
+            </Button>
+          </form>
           <br></br>
-          <TextField
-            label="Batch Number:"
-            onChange={this.handleChangeBatchNumber}
-            type="text"
-            placeholder="Give your batch a number"
-            fullWidth
-          />
-          <br></br>
-          <TextField
-            label="Hot Liquor Tank Temp:"
-            onChange={this.handleChangeHotLiquor}
-            type="text"
-            placeholder="Please log the HLT Temp"
-            fullWidth
-          />
-          <br></br>
-          <TextField
-            label="Mash-In Temp:"
-            onChange={this.handleChangeMashIn}
-            type="text"
-            placeholder="Please log the Mash-In Temp"
-            fullWidth
-          />
-          <br></br>
-          <TextField
-            label="Mash-Out Temp:"
-            onChange={this.handleChangeMashOut}
-            type="text"
-            placeholder="Please log the Mash-Out Temp"
-            fullWidth
-          />
-          <br></br>
-          <TextField
-            label="Boil Time:"
-            onChange={this.handleChangeBoilTime}
-            type="text"
-            placeholder="Please log the Boil Time"
-            fullWidth
-          />
-          <br></br>
-          <TextField
-            label="Notes:"
-            onChange={this.handleChangeNotes}
-            type="text"
-            placeholder="Please log any notes"
-            fullWidth
-          />
-          <br></br>
-          <br></br>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={this.toLogBook}
-            type="submit"
+          <Grid
+            container
+            justify={"space-evenly"}
+            spacing={12}
+            alignItems={"center"}
           >
-            Submit to Brew Log
-          </Button>
-        </form>
-        <br></br>
-        <Button className={this.props.classes.Button} onClick={this.toLogBook}>
-          GO TO LOG BOOK
-        </Button>
-        <br></br>
-        <Button className={this.props.classes.Button} onClick={this.toHome}>
-          GO TO HOME PAGE
-        </Button>
-        <br></br>
+            <Button
+              className={this.props.classes.Button}
+              onClick={this.toLogBook}
+            >
+              GO TO LOG BOOK
+            </Button>
+            <br></br>
+            <Button className={this.props.classes.Button} onClick={this.toHome}>
+              GO TO HOME PAGE
+            </Button>
+          </Grid>
+          <br></br>
+        </main>
       </div>
     );
   }

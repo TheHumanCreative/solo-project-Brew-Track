@@ -2,17 +2,32 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import { withStyles } from "@material-ui/core/styles";
+import { Grid } from "@material-ui/core";
+
+const styles = {
+
+  Button: {
+    background: "brown",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    display: "center"
+  },
+  main: {
+    backgroundImage: "url('./images/startbrewing.jpg')",
+    backgroundSize: "100%",
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    height: "1000px"
+  }
+};
 
 class EditBatchPage extends Component {
   componentDidMount() {
-    // this.props.dispatch({
-    //   type: "FETCH_BATCH_INFO"
 
-    // });
-
-    // this.props.dispatch({
-    //   type: "FETCH_BATCH_ITEM"
-    // });
     this.fetchbatch();
 
     this.props.dispatch({
@@ -27,30 +42,6 @@ class EditBatchPage extends Component {
       payload: id
     });
   };
-
-  // handlePost = event => {
-  //   event.preventDefault();
-  //   console.log("Submit Button has been Clicked");
-  //   this.props.dispatch({
-  //     type: "POST_INFO",
-  //     payload: this.state
-  //   });
-  // };
-
-  // handleStylePost = event => {
-  //   event.preventDefault();
-  //   console.log("Styles has been added to Beer Batch.");
-  //   this.props.dispatch({
-  //     type: "POST_STYLES",
-  //     payload: this.state
-  //   });
-  // };
-
-  // handleChangeBeerType = event => {
-  //   this.setState({
-  //     beer_type: event.target.value
-  //   });
-  // };
 
   updateBatch = event => {
     // event.preventDefault();
@@ -86,164 +77,174 @@ class EditBatchPage extends Component {
   render() {
     return (
       <div>
-        <form id="table1" onSubmit={this.updateBatch}>
-          <div class="form-group">
-            <label for="sel1">Beer Style: </label>
-            <select
-              value={this.props.reduxStore.editReducer.value}
-              onSubmit={this.handleStylePost}
-              className="form-control"
-              onChange={this.handleChangeBeerType}
-            >
-              <option value="">None</option>
-              {this.props.reduxStore.styleReducer.map(style => {
-                return (
-                  <option key={style.id} value={style.beer_type}>
-                    {style.beer_type}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <TextField
-            label="Edit Beer Name:"
-            value={this.props.reduxStore.editReducer.beer_name}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "beer_name",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.beer_name
-            }}
-          />
-          <TextField
-            label="Edit Batch Number:"
-            value={this.props.reduxStore.editReducer.batch_name}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "batch_name",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.batch_name
-            }}
-          />
+        <main className={this.props.classes.main}>
+          <form onSubmit={this.updateBatch}>
+            <div class="form-group">
+              <label for="sel1">Beer Style: </label>
+              <select
+                value={this.props.reduxStore.editReducer.value}
+                onSubmit={this.handleStylePost}
+                className="form-control"
+                onChange={this.handleChangeBeerType}
+              >
+                <option value="">None</option>
+                {this.props.reduxStore.styleReducer.map(style => {
+                  return (
+                    <option key={style.id} value={style.beer_type}>
+                      {style.beer_type}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            <TextField
+              label="Edit Beer Name:"
+              value={this.props.reduxStore.editReducer.beer_name}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "beer_name",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.beer_name
+              }}
+            />
+            <TextField
+              label="Edit Batch Number:"
+              value={this.props.reduxStore.editReducer.batch_name}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "batch_name",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.batch_name
+              }}
+            />
+            <br></br>
+            <TextField
+              label="Edit Hot Liquor Tank Temp:"
+              value={this.props.reduxStore.editReducer.temp_hlt}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "temp_hlt",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.temp_hlt
+              }}
+            />
+            <br></br>
+            <TextField
+              label="Edit Mash-In Temp:"
+              value={this.props.reduxStore.editReducer.temp_mash_in}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "temp_mash_in",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.temp_mash_in
+              }}
+            />
+            <br></br>
+            <TextField
+              label="Edit Mash-Out Temp:"
+              value={this.props.reduxStore.editReducer.temp_mash_out}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "temp_mash_out",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.temp_mash_out
+              }}
+            />
+            <br></br>
+            <TextField
+              label="Edit Time of Boil:"
+              value={this.props.reduxStore.editReducer.time_boil}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "time_boil",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.time_boil
+              }}
+            />
+            <br></br>
+            <TextField
+              label="Edit Notes:"
+              value={this.props.reduxStore.editReducer.notes}
+              onChange={event =>
+                this.props.dispatch({
+                  type: "UPDATE",
+                  payload: {
+                    propertyName: "notes",
+                    value: event.target.value
+                  }
+                })
+              }
+              fullWidth
+              InputLabelProps={{
+                shrink: this.props.reduxStore.editReducer.notes
+              }}
+            />
+            <br></br>
+            <br></br>
+            <Button variant="contained" color="secondary" type="submit">
+              Submit to Brew Log
+            </Button>
+          </form>
           <br></br>
-          <TextField
-            label="Edit Hot Liquor Tank Temp:"
-            value={this.props.reduxStore.editReducer.temp_hlt}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "temp_hlt",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.temp_hlt
-            }}
-          />
-          <br></br>
-          <TextField
-            label="Edit Mash-In Temp:"
-            value={this.props.reduxStore.editReducer.temp_mash_in}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "temp_mash_in",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.temp_mash_in
-            }}
-          />
-          <br></br>
-          <TextField
-            label="Edit Mash-Out Temp:"
-            value={this.props.reduxStore.editReducer.temp_mash_out}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "temp_mash_out",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.temp_mash_out
-            }}
-          />
-          <br></br>
-          <TextField
-            label="Edit Time of Boil:"
-            value={this.props.reduxStore.editReducer.time_boil}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "time_boil",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.time_boil
-            }}
-          />
-          <br></br>
-          <TextField
-            label="Edit Notes:"
-            value={this.props.reduxStore.editReducer.notes}
-            onChange={event =>
-              this.props.dispatch({
-                type: "UPDATE",
-                payload: {
-                  propertyName: "notes",
-                  value: event.target.value
-                }
-              })
-            }
-            fullWidth
-            InputLabelProps={{
-              shrink: this.props.reduxStore.editReducer.notes
-            }}
-          />
-          <br></br>
-          <br></br>
-          <Button
-            variant="contained"
-            color="secondary"
-            type="submit"
+          <Grid
+            container
+            justify={"space-evenly"}
+            spacing={12}
+            alignItems={"center"}
           >
-            Submit to Brew Log
-          </Button>
-        </form>
-        <br></br>
-        <Button onClick={this.toLogBook}>GO TO LOG BOOK</Button>
-        <br></br>
-        <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
-        <br></br>
+            <Button
+              className={this.props.classes.Button} onClick={this.toLogBook}>
+              GO TO LOG BOOK
+            </Button>
+            <br></br>
+            <Button className={this.props.classes.Button} onClick={this.toHome}>
+              GO TO HOME PAGE
+            </Button>
+          </Grid>
+          <br></br>
+        </main>
       </div>
     );
   }
@@ -255,4 +256,4 @@ const mapStateToProps = reduxStore => {
     };
 };
 
-export default connect(mapStateToProps)(EditBatchPage);
+export default connect(mapStateToProps)(withStyles(styles)(EditBatchPage));
