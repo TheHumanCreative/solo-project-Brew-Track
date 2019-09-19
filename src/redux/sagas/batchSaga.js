@@ -21,11 +21,15 @@ function* fetchBatchInfo() {
 
 function* putBatchItem(action) {
     try{
+        console.log(action.payload);
+        
         // POST THE ITEMS FROM OUR SERVER
         yield axios.post(`/api/batch`, action.payload);
         yield put ({
             type: 'FETCH_BATCH_INFO',
         })
+        // go to a new page
+        action.history.push('/logbook')
     }catch(error){
         console.log('ERROR IN POST', error);
     }

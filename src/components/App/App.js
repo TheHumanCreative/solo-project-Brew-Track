@@ -9,7 +9,7 @@ import {
 import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+// import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
@@ -58,9 +58,8 @@ class App extends Component {
             {/* This route is for the edit page of the application*/}
             <Route exact path="/logbook" component={LogBookPage} />
             {/* This route is for the view all logs page of the application*/}
-            <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     );}

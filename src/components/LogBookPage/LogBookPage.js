@@ -9,26 +9,39 @@ const styles = {
     border: "10px solid black",
     width: "100%",
     backgroundColor: "tan",
+    opacity: "0.9",
     // minHeight: "20vh",
     // display: "flex", // is fine as there is not a dash.
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     fontSize: "calc(5px + 2vmin)",
-    color: "black",
-    // "&:hover": {
-    //   // change to both KEY and the
-    //   textDecoration: "underline",
-    //   color: "white"
-    // }
+    color: "black"
+   
   },
   tr: {
-    border: "3px solid black"
+    border: "3px solid black",
   },
   td: {
     border: "3px solid black",
     justifyContent: "center",
     alignItems: "center"
+  },
+  Button: {
+    background: "brown",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    display: "center"
+  },
+  main: {
+    backgroundImage: "url('./images/mileshops.jpg')",
+    backgroundSize: "100%",
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    height: "900px"
   }
 };
 
@@ -135,39 +148,53 @@ class LogBookPage extends Component {
     });
 
     return (
-      <div>
+      <main className={this.props.classes.main}>
         <div>
-          <p>
-            <table className={this.props.classes.table}>
-              <tr className={this.props.classes.tr}>
-                <th>Beer id</th>
-                <th>User id</th>
-                <th>Beer Name</th>
-                <th>Beer Style</th>
-                <th>Batch Number</th>
-                <th>HLT Temp</th>
-                <th>Mash In Temp</th>
-                <th>Mash Out TEMP</th>
-                <th>Boil Time</th>
-                <th>Notes</th>
-                <th>Delete</th>
-                <th>Edit</th>
-              </tr>
-              <tbody>{batchTable}</tbody>
-            </table>
-          </p>
+          <div>
+            <p>
+              <table className={this.props.classes.table}>
+                <tr className={this.props.classes.tr}>
+                  <th>Beer id</th>
+                  <th>User id</th>
+                  <th>Beer Name</th>
+                  <th>Beer Style</th>
+                  <th>Batch Number</th>
+                  <th>HLT Temp</th>
+                  <th>Mash In Temp</th>
+                  <th>Mash Out TEMP</th>
+                  <th>Boil Time</th>
+                  <th>Notes</th>
+                  <th>Delete</th>
+                  <th>Edit</th>
+                </tr>
+                <tbody>{batchTable}</tbody>
+              </table>
+            </p>
+          </div>
+          <br></br>
+          <Grid
+            container
+            justify={"space-evenly"}
+            spacing={12}
+            alignItems={"center"}
+          >
+            <Button
+              className={this.props.classes.Button}
+              onClick={this.toCreateBatch}
+            >
+              GO TO CREATE BATCH
+            </Button>
+            <br></br>
+            <Button 
+              className={this.props.classes.Button} 
+              onClick={this.toHome}
+            >
+              GO TO HOME PAGE
+            </Button>
+          </Grid>
+          <br></br>
         </div>
-        <br></br>
-        <Grid container spacing={8} alignItems={"center"}>
-          <Grid item xs={6}>
-            <Button onClick={this.toCreateBatch}>GO TO CREATE BATCH</Button>
-          </Grid>
-          <Grid item xs={6}>
-            <Button onClick={this.toHome}>GO TO HOME PAGE</Button>
-          </Grid>
-        </Grid>
-        <br></br>
-      </div>
+      </main>
     );
   }
 }

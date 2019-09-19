@@ -1,6 +1,5 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0px;
 }
 
 .alert {
@@ -8,14 +7,19 @@ body {
     margin: 50px;
 }
 
+main {
+    height: 100%;
+}
+
+
 form {
     background-color: #dbd5d5;
-    width: 30%;
+    width: 50%;
     height: 400px;
-    margin: 20px auto;
+    margin:  auto;
     padding: 25px;
-    border-radius: 2px;
-    border: chocolate;
+    border-radius: 20px;
+    opacity: 0.7;
 }
 
 input {
@@ -34,7 +38,7 @@ input {
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
-  background-color: #008183;
+  background-Image: #008183;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -49,11 +53,3 @@ input {
     cursor: pointer;
 }
 
-/* Button {
-    float: right;
-} */
-/* #batchTable, tr, td {
-   border: 1px solid black;
- 
-    
-} */
