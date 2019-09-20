@@ -49,14 +49,14 @@ class App extends Component {
             they will see the info page instead. */}
             {/* <ProtectedRoute exact path="/info" component={InfoPage} /> */}
             {/* If none of the other routes matched, we will show a 404. */}
-            <Route exact path="/start" component={StartBrewingPage} />
+            <ProtectedRoute exact path="/start" component={StartBrewingPage} />
             {/* <ProtectedRoute exact path="/start" component={StartBrewingPage} />
             This route is for the start page of the application */}
             <ProtectedRoute exact path="/create" component={CreateBatchPage} />
             {/* This route is for the create page of the application*/}
-            <Route exact path="/edit/:id" component={EditBatchPage} />
+            <ProtectedRoute exact path="/edit/:id" component={EditBatchPage} />
             {/* This route is for the edit page of the application*/}
-            <Route exact path="/logbook" component={LogBookPage} />
+            <ProtectedRoute exact path="/logbook" component={LogBookPage} />
             {/* This route is for the view all logs page of the application*/}
           </Switch>
           {/* <Footer /> */}
