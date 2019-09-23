@@ -82,15 +82,24 @@ class EditBatchPage extends Component {
             <div class="form-group">
               <label for="sel1">Beer Style: </label>
               <select
-                value={this.props.reduxStore.editReducer.value}
+                value={this.props.reduxStore.editReducer.style_id}
                 onSubmit={this.handleStylePost}
                 className="form-control"
                 onChange={this.handleChangeBeerType}
               >
-                <option value="">None</option>
+                {/* <option value={this.props.reduxStore.editReducer.style_id}>
+                  {this.props.reduxStore.editReducer.style_id}
+                </option> */}
                 {this.props.reduxStore.styleReducer.map(style => {
+                  console.log(style);
+                  console.log('asdf',this.props.reduxStore.editReducer);
+                  
                   return (
-                    <option key={style.id} value={style.beer_type}>
+                    <option
+                      key={style.id}
+                      value={style.id}
+                      // selected={this.props.reduxStore.editReducer.style_id == style.id}
+                    >
                       {style.beer_type}
                     </option>
                   );
@@ -235,7 +244,9 @@ class EditBatchPage extends Component {
             alignItems={"center"}
           >
             <Button
-              className={this.props.classes.Button} onClick={this.toLogBook}>
+              className={this.props.classes.Button}
+              onClick={this.toLogBook}
+            >
               GO TO LOG BOOK
             </Button>
             <br></br>
