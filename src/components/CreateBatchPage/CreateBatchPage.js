@@ -70,15 +70,6 @@ class CreateBatchPage extends Component {
     // this.toLogBook();
   };
 
-  // handleStylePost = event =>{
-  //   event.preventDefault();
-  //   console.log("Styles has been added to Beer Batch.");
-  //   this.props.dispatch({
-  //     type: "POST_STYLES",
-  //     payload: this.state
-  //   });
-  // };
-
   handleChangeBeerType = event => {
     this.setState({
       style_id: event.target.value
