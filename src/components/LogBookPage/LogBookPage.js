@@ -103,7 +103,7 @@ class LogBookPage extends Component {
       return (
         <tr>
           <td >{batch.id}</td>
-          <td >{batch.user_id}</td>
+          {/* <td >{batch.user_id}</td> */}
           <td >{batch.beer_name}</td>
           <td >{batch.beer_type}</td>
           <td >{batch.batch_name}</td>
@@ -155,7 +155,7 @@ class LogBookPage extends Component {
               <table className={this.props.classes.table}>
                 <tr className={this.props.classes.tr}>
                   <th>Beer id</th>
-                  <th>User id</th>
+                  {/* <th>User id</th> */}
                   <th>Beer Name</th>
                   <th>Beer Style</th>
                   <th>Batch Number</th>

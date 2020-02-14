@@ -107,15 +107,6 @@ VALUES
     ('Trappist Beer'),
     ('Tripel');
 
-INSERT INTO "beer"
-    ("beer_name", "style_id")
-VALUES
-    ('Amberthyst', 1),
-    ('Lampshade', 2),
-    ('ChordTangle', 3),
-    ('Pentagram', 4),
-    ('SmoresBier', 5);
-
 INSERT INTO "batch"
     ("user_id", "beer_id", "batch_name","temp_hlt", "temp_mash_in", "temp_mash_out", "time_boil", "notes")
 VALUES
@@ -133,15 +124,6 @@ FROM "batch"
 WHERE "batch".user_id = 1;
 ---MADE A GRAB FOR USER SPECIFIC BATCHES---WORKS -- CHANGE THE 1 to anything matching a user. WILL BE $1 when it is done.
 
-
-
-
---SELECT * FROM "beer"
---JOIN "style" ON "beer_name" = "style".beer_type;
-
-
-
-
 SELECT *
 FROM "batch"
 WHERE "user_id" = 1 AND "id" = 2;
@@ -154,9 +136,3 @@ DELETE FROM "batch" WHERE "user_id" = 1 AND "id" = 2;
 
 
 
-
-INSERT INTO "beer"
-    ("beer_name", "style_id")
-VALUES
-    ('Tool Sober', 3);
----SUCCESS ADD BEERNAME AND STYLE ID ASSOCIATION TO TABLE---

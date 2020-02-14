@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
   HashRouter as Router,
-  Route,
+  // Route,
   Redirect,
   Switch,
 } from 'react-router-dom';
@@ -13,7 +13,7 @@ import Nav from '../Nav/Nav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import UserPage from '../UserPage/UserPage';
+
 import StartBrewingPage from '../StartBrewingPage/StartBrewingPage';
 import EditBatchPage from '../EditBatchPage/EditBatchPage';
 import CreateBatchPage from '../CreateBatchPage/CreateBatchPage';
@@ -44,14 +44,16 @@ class App extends Component {
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
-            <ProtectedRoute exact path="/home" component={UserPage} />
+            <ProtectedRoute
+              exact
+              path="/home"
+              component={StartBrewingPage}
+            />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             {/* <ProtectedRoute exact path="/info" component={InfoPage} /> */}
             {/* If none of the other routes matched, we will show a 404. */}
-            <ProtectedRoute exact path="/start" component={StartBrewingPage} />
-            {/* <ProtectedRoute exact path="/start" component={StartBrewingPage} />
-            This route is for the start page of the application */}
+            {/*This route is for the start page of the application */}
             <ProtectedRoute exact path="/create" component={CreateBatchPage} />
             {/* This route is for the create page of the application*/}
             <ProtectedRoute exact path="/edit/:id" component={EditBatchPage} />

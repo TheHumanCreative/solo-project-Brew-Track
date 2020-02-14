@@ -103,18 +103,6 @@ render(){
               GO TO CREATE BATCH
             </Button>
           </Grid>
-
-          <Grid>
-            <Button
-              className={this.props.classes.Button}
-              variant="contained"
-              // color="primary"
-              color="green"
-              onClick={this.toHome}
-            >
-              GO TO HOME PAGE
-            </Button>
-          </Grid>
         </Grid>
         </main>
       </div>

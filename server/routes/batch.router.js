@@ -7,16 +7,21 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     if(req.isAuthenticated()){
-        console.log('req.user:', req.user);
-        let queryText = `SELECT "batch".*, "style".beer_type FROM "batch"
-                        JOIN "style" ON "style".id = "batch".style_id;`;
-        pool.query(queryText)
-        .then(results => res.send(results.rows))
-        .catch(error => {
-            console.log('Error in GET route Server side', error);
-            res.sendStatus(404);
-        })
-    }else{
+                               console.log("req.user:", req.user);
+                               let queryText = `SELECT "batch".*, "style".beer_type FROM "batch"
+                                               JOIN "style" ON "style".id = "batch".style_id WHERE batch.user_id = ${req.user.id};`;
+                            //let queryText = `SELECT * FROM "batch" WHERE user_id = ${req.user.id}`;
+                               pool
+                                 .query(queryText)
+                                 .then(results => res.send(results.rows))
+                                 .catch(error => {
+                                   console.log(
+                                     "Error in GET route Server side",
+                                     error
+                                   );
+                                   res.sendStatus(404);
+                                 });
+                             }else{
         res.sendStatus(403);
     }
 });
