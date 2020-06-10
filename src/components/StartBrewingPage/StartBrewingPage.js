@@ -10,6 +10,7 @@ import { Grid } from "@material-ui/core";
 
 const styles = {
   header: {
+    background: "green",
     fontSize: "34px",
     width: "100%",
     minHeight: "20vh",

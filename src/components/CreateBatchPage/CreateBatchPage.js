@@ -228,7 +228,10 @@ class CreateBatchPage extends Component {
               GO TO LOG BOOK
             </Button>
             <br></br>
-            <Button className={this.props.classes.Button} onClick={this.toHome}>
+            <Button 
+              className={this.props.classes.Button}
+              onClick={this.toHome}
+            >
               GO TO HOME PAGE
             </Button>
           </Grid>

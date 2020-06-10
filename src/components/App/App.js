@@ -13,7 +13,7 @@ import Nav from '../Nav/Nav';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-
+import UserPage from '../UserPage/UserPage';
 import StartBrewingPage from '../StartBrewingPage/StartBrewingPage';
 import EditBatchPage from '../EditBatchPage/EditBatchPage';
 import CreateBatchPage from '../CreateBatchPage/CreateBatchPage';
@@ -53,6 +53,7 @@ class App extends Component {
             they will see the info page instead. */}
             {/* <ProtectedRoute exact path="/info" component={InfoPage} /> */}
             {/* If none of the other routes matched, we will show a 404. */}
+            <ProtectedRoute exact path="/user" component={UserPage} />
             {/*This route is for the start page of the application */}
             <ProtectedRoute exact path="/create" component={CreateBatchPage} />
             {/* This route is for the create page of the application*/}

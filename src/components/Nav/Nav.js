@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
-const Nav = props => (
+const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
       <h2 className="nav-title">Brew Track</h2>
@@ -19,6 +19,9 @@ const Nav = props => (
       {/* Show the link to the info page and the logout button if the user is logged in */}
       {props.user.id && (
         <>
+          <Link className="nav-link" to="/user">
+            Profile
+          </Link>
           <Link className="nav-link" to="/create">
             Create Batch
           </Link>

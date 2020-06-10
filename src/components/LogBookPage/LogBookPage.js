@@ -154,18 +154,18 @@ class LogBookPage extends Component {
             <p>
               <table className={this.props.classes.table}>
                 <tr className={this.props.classes.tr}>
-                  <th>Beer id</th>
+                  {/* <th>Beer id</th> */}
                   {/* <th>User id</th> */}
                   <th>Beer Name</th>
                   <th>Beer Style</th>
                   <th>Batch Number</th>
                   <th>HLT Temp</th>
                   <th>Mash In Temp</th>
-                  <th>Mash Out TEMP</th>
+                  <th>Mash Out Temp</th>
                   <th>Boil Time</th>
                   <th>Notes</th>
-                  <th>Delete</th>
-                  <th>Edit</th>
+                  {/* <th>Delete</th>
+                  <th>Edit</th> */}
                 </tr>
                 <tbody>{batchTable}</tbody>
               </table>
