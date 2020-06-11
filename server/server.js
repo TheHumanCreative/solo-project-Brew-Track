@@ -13,7 +13,7 @@ const userRouter = require('./routes/user.router');
 const batchRouter = require('./routes/batch.router');
 const beerRouter = require('./routes/beer.router');
 const styleRouter = require('./routes/style.router');
-const editRouter = require('./routes/edit.router');
+const editRouter = require('../src/edit.router');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
